@@ -10,7 +10,7 @@ Interactive Quiz is a web-based application built with ReactJS.
 - Saves the User's Name and Final Score as PNG image.
 
 #### Running the app
-After cloning this repository, open the repo and open /interacive-quiz with either clicking \
+After cloning this repository, open the repo and open ./interacive-quiz with either clicking \
 or `cd interactive-quiz` in the terminal. 
 
 Install the necessary modules and dependencies with
