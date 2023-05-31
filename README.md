@@ -16,8 +16,7 @@ or `cd interactive-quiz` in the terminal.
 Install the necessary modules and dependencies with
 `npm install`. 
 
-After the installation of modules, Run \
-`npm start` to start the app.
+After the installation of modules, Run `npm start` to start the app.
 
 Visit to `localhost:3000` in browser to view the working app.
 
