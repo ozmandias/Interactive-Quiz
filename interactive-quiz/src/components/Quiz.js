@@ -8,6 +8,7 @@ const QuizApp = () => {
   const [timeRemaining, setTimeRemaining] = useState(10);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+  const [feedback, setFeedback] = useState('');
   const [imageSaved, setImageSaved] = useState(false);
   const quizRef = useRef(null);
 
@@ -32,17 +33,25 @@ const QuizApp = () => {
 
   const handleAnswer = (selectedAnswer) => {
     const currentQuestionData = questions[currentQuestion];
+
     if (selectedAnswer && currentQuestionData.correct_answer === selectedAnswer) {
       setScore((prevScore) => prevScore + 1);
-    }
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-      setTimeRemaining(10);
-      setSelectedOption('');
+      setFeedback('Correct answer!');
     } else {
-      setQuizCompleted(true);
+      setFeedback('Wrong answer!');
     }
+
+    setTimeout(() => {
+      const nextQuestion = currentQuestion + 1;
+      setFeedback('');
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+        setTimeRemaining(10);
+        setSelectedOption('');
+      } else {
+        setQuizCompleted(true);
+      }
+    }, 2000);
   };
 
   const handleRestartQuiz = () => {
@@ -51,6 +60,7 @@ const QuizApp = () => {
     setTimeRemaining(10);
     setQuizCompleted(false);
     setSelectedOption('');
+    setFeedback('');
     setImageSaved(false);
   };
 
@@ -72,8 +82,8 @@ const QuizApp = () => {
           <h3 className='d-flex justify-content-center'>Quiz Completed!</h3>
 
           <div className='d-flex justify-content-center'>
-            <div class="col-4">
-              <input className='form-control' type="text" class="form-control" placeholder="Name" aria-label="Name" />
+            <div className="col-4">
+              <input className='form-control' type="text" placeholder="Name" aria-label="Name" />
             </div>
           </div>
 
@@ -81,7 +91,7 @@ const QuizApp = () => {
           <p>Final Score: {score}</p>
 
           <div className='d-flex justify-content-center'>
-            <button className='btn btn-success text' onClick={saveQuizAsImage}> <i class="bi bi-card-image"></i> Save Result</button>
+            <button className='btn btn-success text' onClick={saveQuizAsImage}> <i className="bi bi-card-image"></i> Save Result</button>
           </div>
           <div className='d-flex justify-content-center'>
             <button className='btn btn-info text my-2' onClick={handleRestartQuiz}> <i className="bi bi-arrow-clockwise"></i> Restart Quiz</button>
@@ -114,6 +124,10 @@ const QuizApp = () => {
             ))}
           </form>
           
+          <div className='d-flex justify-content-center'>
+            <span className={feedback === 'Correct answer!' ? 'badge text-bg-success' : 'badge text-bg-danger'}>{feedback}</span>
+          </div>
+
           <button onClick={() => handleAnswer(selectedOption)} className='btn btn-warning text my-2'> <i className="bi bi-check-circle"></i> Submit Answer</button>
 
           <p>Time Remaining: {timeRemaining} seconds</p>
