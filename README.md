@@ -21,6 +21,6 @@ After the installation of modules, Run `npm start` to start the app.
 Visit to `localhost:3000` in browser to view the working app.
 
 ### Libraries used
-- [ReactJS] (https://react.dev/)
-- [Bootstrap] (https://getbootstrap.com/)
-- [html2canvas] (https://html2canvas.hertzen.com/)
+- [ReactJS](https://react.dev/)
+- [Bootstrap](https://getbootstrap.com/)
+- [html2canvas](https://html2canvas.hertzen.com/)
